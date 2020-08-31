@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "AudioStreamPlayer",
+"class": "AudioStreamPlayerADSR",
+"language": "GDScript",
+"path": "res://addons/midi/ADSR.gd"
+}, {
+"base": "Reference",
+"class": "Bank",
+"language": "GDScript",
+"path": "res://addons/midi/Bank.gd"
+}, {
+"base": "Node",
+"class": "MidiPlayer",
+"language": "GDScript",
+"path": "res://addons/midi/MidiPlayer.gd"
+} ]
+_global_script_class_icons={
+"AudioStreamPlayerADSR": "",
+"Bank": "",
+"MidiPlayer": ""
+}
+
+[application]
+
+config/name="Lesson"
+run/main_scene="res://Main.tscn"
+config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "midi" )
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

@@ -12,6 +12,8 @@ class Note:
 		self.pitch = pitch # 0 .. 120 like midi
 
 	func get_pitch_name():
+		if pitch < 0:
+			return "Beat!"
 		var note_names = ["A", "A# / Bb", "B", "C", "C# / Db", "D", "D# / Eb", "E", "F", "F# / Gb", "G", "G# / Ab"]
 		return note_names[self.pitch % CHROMATIC_SCALE_SIZE] + " " + str(self.pitch / CHROMATIC_SCALE_SIZE)
 

@@ -9,8 +9,12 @@ var UNITS_IN_BAR = BEATS_PER_BAR * MIN_NOTES_PER_BEAT * UNIT
 var selected_note_value = null
 var bars = [[]]
 
+var Music = preload("res://Music.gd")
+
 func _ready():
 	print("BAR UNIT SIZE ", UNITS_IN_BAR)
+	var a_flat = Music.Note.new(0, 0, 11)
+	print(a_flat.get_pitch_name())
 
 func _on_note_selected(note):
 	selected_note_value = note

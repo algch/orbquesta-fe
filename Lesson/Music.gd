@@ -6,7 +6,7 @@ const BAR_SIZE = 200 # bar width in pixels
 class Note:
 	var quantity : int
 	var note_value : int
-	var pitch : int setget set_pitch, get_pitch
+	var pitch : int setget set_pitch
 	var pitch_name
 	var is_rest : bool
 
@@ -25,9 +25,6 @@ class Note:
 			return
 
 		self.pitch_name = NOTE_NAMES[self.pitch % CHROMATIC_SCALE_SIZE] + " " + str(self.pitch / CHROMATIC_SCALE_SIZE)
-
-	func get_pitch():
-		return self.pitch_name
 
 class Bar:
 	var notes := []

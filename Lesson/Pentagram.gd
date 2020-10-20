@@ -21,6 +21,6 @@ func get_dragged_bar():
 	var r = Rect2(position + $Start.position, $End.position - $Start.position)
 	var mouse_pos = get_global_mouse_position()
 	if r.has_point(mouse_pos):
-        return starting_bar
+		return starting_bar
 
 	return null

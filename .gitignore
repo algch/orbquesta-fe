@@ -1,2 +1,4 @@
 Bocetos/
 **/*.import
+**/node_modules/**
+**/build/**

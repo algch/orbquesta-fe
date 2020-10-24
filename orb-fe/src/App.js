@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+
+import RythmicDictation from './scenes/RythmicDictation';
 
 function App() {
   return (
@@ -8,6 +10,7 @@ function App() {
       <div>
         Orbquesta
       </div>
+      <RythmicDictation />
     </div>
   );
 }

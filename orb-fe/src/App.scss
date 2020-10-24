@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Metdemo';
+  src: local('Metdemo'), url('./fonts/Metdemo.ttf') format('truetype');
+}
+
 .App {
   text-align: center;
 }
@@ -26,6 +31,24 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.rythmic-dictation--container {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    width: 100px;
+    height: 20px;
+  }
+}
+
+.music--container {
+  font-family: 'Metdemo';
+
+  button {
+    font-family: 'Metdemo';
+  }
 }
 
 @keyframes App-logo-spin {

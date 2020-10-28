@@ -39,7 +39,7 @@ function RythmicDictation() {
     };
 
     const printNotes = () => {
-        return exerciseNotes.map((note) => value2Note[note] || "").join('%');
+        return "VB%" + exerciseNotes.map((note) => value2Note[note] || "").join('%');
     }
 
   return (

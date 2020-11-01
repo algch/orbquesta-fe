@@ -22,9 +22,14 @@ function Login() {
             <label htmlFor="password">Password{' '}</label>
             <input id="password" type="password" />
           </div>
-          <button className="login__button-secondary" to="/exercises" onClick={onButtonClicked}>
-              Iniciar sesión
-          </button>
+          <div className="login__input">
+            <button className="login__button-secondary" to="/exercises" onClick={onButtonClicked}>
+                Iniciar sesión
+            </button>
+            <button className="login__button-secondary" to="/signup" onClick={onButtonClicked}>
+                Registrarse
+            </button>
+          </div>
         </React.Fragment>
       );
     }

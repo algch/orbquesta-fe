@@ -10,7 +10,7 @@ function About() {
 
   return (
     <div>
-      Información para maestros y padres
+      <div>Orientación y aviso de privacidad... en construcción</div>
       <button onClick={goBack}>Regresar</button>
     </div>
   );

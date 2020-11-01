@@ -24,7 +24,7 @@
 
 .login {
   &--container {
-    background: #bb1cb8;
+    background-image: image('../public/login-background.png');
     position: absolute;
     display: flex;
     flex-direction: column;

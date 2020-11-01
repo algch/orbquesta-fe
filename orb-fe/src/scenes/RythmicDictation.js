@@ -13,7 +13,7 @@ function RythmicDictation() {
     const [selectedNote, setSelectedNote] = useState(2);
     const [exerciseNotes, setExcerciseNotes] = useState([]);
     const synth = new Tone.Synth().toDestination();
-    Tone.Transport.bpm.value = 120;
+    Tone.Transport.bpm.value = 90;
 
     const value2Note = {
         2: 'W',
@@ -26,13 +26,16 @@ function RythmicDictation() {
     };
 
     const playNotes = () => {
-        // exerciseNotes.forEach(note => {
-        //     const now = Tone.now();
-        //     synth.triggerAttackRelease("C4", `${note}n`, now);
-        // });
+        let noteTime = new Tone.Time(0);
+        const notes = exerciseNotes.map(note => {
+            let prevNoteTime = noteTime;
+            noteTime += Tone.Time(`${note}n`);
+            return [prevNoteTime, "C4"];
+        });
+
         var part = new Tone.Part(function(time, pitch){
             synth.triggerAttackRelease(pitch, "8n", time);
-        }, [["0", "C3"], [1 * Tone.Time("4n"), "E3"], [2 * Tone.Time("4n"), "G3"], [3 * Tone.Time("4n"), "C#4"]]);
+        }, notes);
 
         part.start();
         Tone.Transport.start();

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import * as Tone from 'tone';
 
+const CORRECT_ANSWER = [4, 8, 8, 16, 16, 16, 16, 4];
+
 class Bar {
 
 }
@@ -25,15 +27,15 @@ function RythmicDictation() {
         setExcerciseNotes([...exerciseNotes, noteValue]);
     };
 
-    const playNotes = () => {
+    const playNotes = (notesToPlay) => {
         const noteValues = [];
         let noteTime = new Tone.Time(0);
-        const notes = exerciseNotes.map(note => {
+        const notes = notesToPlay.map(note => {
             let prevNoteTime = noteTime;
             const noteValue = `${note}n`;
             noteTime += Tone.Time(noteValue);
             noteValues.push(noteValue);
-            return [prevNoteTime, "C4"];
+            return [prevNoteTime, "C3"];
         });
 
         var part = new Tone.Part(function(time, pitch){
@@ -43,6 +45,22 @@ function RythmicDictation() {
 
         part.start();
         Tone.Transport.start();
+    };
+
+    const _isResponseCorrect = () => {
+        if(exerciseNotes.length !== CORRECT_ANSWER.length) {
+            return false;
+        }
+
+        return exerciseNotes.reduce((acc, note, index) => acc && note === CORRECT_ANSWER[index], true);
+    };
+
+    const checkAnswer = () => {
+        if (_isResponseCorrect()) {
+            alert("RESPUESTA CORRECTA");
+        } else {
+            alert("RESPUESTA INCORRECTA");
+        }
     };
 
     const deleteLastNote = () => {
@@ -82,7 +100,13 @@ function RythmicDictation() {
             <button onClick={deleteLastNote}>
                 Borrar última nota
             </button>
-            <button onClick={playNotes}>
+            <button onClick={checkAnswer}>
+                Calificar
+            </button>
+            <button onClick={() => playNotes(CORRECT_ANSWER)}>
+                Escuchar ejercicio
+            </button>
+            <button onClick={() => playNotes(exerciseNotes)}>
                 prueba de sonido
             </button>
         </div>

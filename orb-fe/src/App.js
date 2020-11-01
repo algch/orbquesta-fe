@@ -9,12 +9,12 @@ import Login from './scenes/Login';
 function App() {
   return (
     <BrowserRouter>
-        <Route exact path="/" >
-          <Login />
-        </Route>
-        <Route exact path="/exercises" >
-          <RythmicDictation />
-        </Route>
+      <Route exact path="/" >
+        <Login />
+      </Route>
+      <Route exact path="/exercises" >
+        <RythmicDictation />
+      </Route>
     </BrowserRouter>
   );
 }

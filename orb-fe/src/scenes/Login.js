@@ -1,34 +1,38 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 function Login() {
   const [buttonclicked, setButtonClicked] = useState(false);
+  const history = useHistory();
+
+  const onButtonClicked = (event) => {
+    const path = event.target.attributes.to.nodeValue;
+    history.push(path);
+  }
 
   const getSessionContent = () => {
     if (buttonclicked) {
       return (
         <React.Fragment>
           <div className="login__input">
-            <label for="username">Username{' '}</label>
+            <label htmlFor="username">Username{' '}</label>
             <input id="username" type="text" />
           </div>
           <div className="login__input">
-            <label for="password">Password{' '}</label>
+            <label htmlFor="password">Password{' '}</label>
             <input id="password" type="password" />
           </div>
-          <div className="login__link">
-            <Link to="/exercises">
+          <button className="login__button-secondary" to="/exercises" onClick={onButtonClicked}>
               Iniciar sesión
-            </Link>
-          </div>
+          </button>
         </React.Fragment>
       );
     }
 
     return (
       <React.Fragment>
-        <button className="login__button" onClick={() => setButtonClicked(true)}>
-          Inicia sesión o regístrate
+        <button className="login__button-primary" onClick={() => setButtonClicked(true)}>
+          INICIAR SESIÓN O REGISTRARSE
         </button>
       </React.Fragment>
     );
@@ -36,7 +40,11 @@ function Login() {
 
   return (
       <div className="login--container">
+          <div className="login__logo" />
           {getSessionContent()}
+          <button className="login__button-secondary" to="/about" onClick={onButtonClicked}>
+            Orientación para maestros y padres
+          </button>
       </ div>
   );
 

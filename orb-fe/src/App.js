@@ -5,6 +5,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 import RythmicDictation from './scenes/RythmicDictation';
 import Login from './scenes/Login';
+import About from './scenes/About';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       </Route>
       <Route exact path="/exercises" >
         <RythmicDictation />
+      </Route>
+      <Route exact path="/about" >
+        <About />
       </Route>
     </BrowserRouter>
   );

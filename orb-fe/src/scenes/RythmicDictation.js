@@ -26,20 +26,34 @@ function RythmicDictation() {
     };
 
     const playNotes = () => {
+        const noteValues = [];
         let noteTime = new Tone.Time(0);
         const notes = exerciseNotes.map(note => {
             let prevNoteTime = noteTime;
-            noteTime += Tone.Time(`${note}n`);
+            const noteValue = `${note}n`;
+            noteTime += Tone.Time(noteValue);
+            noteValues.push(noteValue);
             return [prevNoteTime, "C4"];
         });
 
         var part = new Tone.Part(function(time, pitch){
-            synth.triggerAttackRelease(pitch, "8n", time);
+            const noteValue = noteValues.shift();
+            synth.triggerAttackRelease(pitch, noteValue, time);
         }, notes);
 
         part.start();
         Tone.Transport.start();
     };
+
+    const deleteLastNote = () => {
+        if (!exerciseNotes.length) {
+            return;
+        }
+
+        const newExerciseNotes = [...exerciseNotes];
+        newExerciseNotes.pop();
+        setExcerciseNotes(newExerciseNotes);
+    }
 
     const printNotes = () => {
         return "VB%" + exerciseNotes.map((note) => value2Note[note] || "").join('%');
@@ -65,7 +79,10 @@ function RythmicDictation() {
             </button>
         </div>
         <div>
-            <button onClick={() => playNotes()}>
+            <button onClick={deleteLastNote}>
+                Borrar última nota
+            </button>
+            <button onClick={playNotes}>
                 prueba de sonido
             </button>
         </div>

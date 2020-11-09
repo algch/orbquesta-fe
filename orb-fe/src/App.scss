@@ -3,6 +3,13 @@
   src: local('Metdemo'), url('./fonts/Metdemo.ttf') format('truetype');
 }
 
+.page--container {
+  background: #8c52ff;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .rythmic-dictation--container {
   text-align: center;
   display: flex;

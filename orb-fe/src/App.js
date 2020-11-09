@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import { Route, BrowserRouter } from 'react-router-dom';
 
-import RythmicDictation from './scenes/RythmicDictation';
+import RythmicDictation from './scenes/rythmic-dictation/RythmicDictation';
 import Login from './scenes/Login';
 import About from './scenes/About';
 import SignUp from './scenes/SignUp';

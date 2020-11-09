@@ -1,7 +1,9 @@
+import NoteSelector from 'components/NoteSelector';
 import React, { useState } from 'react';
 import * as Tone from 'tone';
 
-const CORRECT_ANSWER = [4, 8, 8, 16, 16, 16, 16, 4];
+const METRONOME = [4, 4, 4, 4];
+const CORRECT_ANSWER = [4, 4, -4, 4];
 
 class Bar {
 
@@ -13,14 +15,16 @@ class TimeSignature {
 
 function RythmicDictation() {
   const [exerciseNotes, setExcerciseNotes] = useState([]);
-  const synth = new Tone.Synth().toDestination();
+  const synth = new Tone.MetalSynth().toDestination();
   Tone.Transport.bpm.value = 90;
 
   const value2Note = {
-    2: 'W',
-    4: 'Q',
-    8: 'E',
-    16: 'T',
+    '2': 'W',
+    '4': 'Q',
+    '8': 'E',
+    '16': 'T',
+    '-4': 'A',
+    '-16': 'S',
   };
   const addNote = (noteValue)  => {
     setExcerciseNotes([...exerciseNotes, noteValue]);
@@ -31,10 +35,12 @@ function RythmicDictation() {
     let noteTime = new Tone.Time(0);
     const notes = notesToPlay.map(note => {
       let prevNoteTime = noteTime;
-      const noteValue = `${note}n`;
+      const parsedNote = Math.abs(note)
+      const noteValue = `${parsedNote}n`;
       noteTime += Tone.Time(noteValue);
       noteValues.push(noteValue);
-      return [prevNoteTime, "G3"];
+      const pitch = note <= 0 ? null : "G3";
+      return [prevNoteTime, pitch];
     });
 
     var part = new Tone.Part(function(time, pitch){
@@ -77,23 +83,22 @@ function RythmicDictation() {
   }
 
 return (
-    <React.Fragment>
+    <div className="page--container">
       <div className="rythmic-dictation--container music--container">
         <div>
             {printNotes()}
         </div>
-        <button onClick={() => addNote(2)}>
-            W
-        </button>
-        <button onClick={() => addNote(4)}>
-            Q
-        </button>
-        <button onClick={() => addNote(8)}>
-            R
-        </button>
-        <button onClick={() => addNote(16)}>
-            T
-        </button>
+        <NoteSelector onNoteSelected={addNote} />
+        <div>
+          <iframe
+            title="lesson-video"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/ziwhcJFiQV8"
+            frameborder="0"
+            allowfullscreen
+          />
+        </div>
       </div>
       <div>
         <button onClick={deleteLastNote}>
@@ -109,7 +114,7 @@ return (
             prueba de sonido
         </button>
       </div>
-    </React.Fragment>
+    </ div>
   );
 }
 

@@ -1,6 +1,10 @@
-import NoteSelector from 'components/NoteSelector';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
+import axios from 'axios';
+
+import LessonVideo from 'components/LessonVideo';
+import NoteSelector from 'components/NoteSelector';
+import OrbquestaClient from 'clients/Orbquesta';
 
 const METRONOME = [4, 4, 4, 4];
 const CORRECT_ANSWER = [4, 4, -4, 4];
@@ -15,6 +19,25 @@ class TimeSignature {
 
 function RythmicDictation() {
   const [exerciseNotes, setExcerciseNotes] = useState([]);
+  const [videoUrl, setVideoUrl] = useState("");
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userResponse = await OrbquestaClient.get('/users/1');
+        console.log("response ", user);
+        debugger;
+        const lessonId = userResponse.data.next_lesson;
+        const lessonResponse = await OrbquestaClient.get(`/lessons/${lessonId}`);
+        setVideoUrl(lessonResponse.data.video_url);
+      } catch (error) {
+        console.log(Object.keys(error), error.message);
+        console.log("config ", error.config);
+        console.log("request ", error.request);
+        console.log("response ", error.response);
+      }
+    };
+    fetchData();
+  });
   const synth = new Tone.MetalSynth().toDestination();
   Tone.Transport.bpm.value = 90;
 
@@ -89,16 +112,7 @@ return (
             {printNotes()}
         </div>
         <NoteSelector onNoteSelected={addNote} />
-        <div>
-          <iframe
-            title="lesson-video"
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/ziwhcJFiQV8"
-            frameborder="0"
-            allowfullscreen
-          />
-        </div>
+        <LessonVideo url={videoUrl} />
       </div>
       <div>
         <button onClick={deleteLastNote}>

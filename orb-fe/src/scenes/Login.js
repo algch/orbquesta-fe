@@ -14,22 +14,6 @@ function Login() {
     if (buttonclicked) {
       return (
         <React.Fragment>
-          <div className="login__input">
-            <label htmlFor="username">Username{' '}</label>
-            <input id="username" type="text" />
-          </div>
-          <div className="login__input">
-            <label htmlFor="password">Password{' '}</label>
-            <input id="password" type="password" />
-          </div>
-          <div className="login__input">
-            <button className="login__button-secondary" to="/exercises" onClick={onButtonClicked}>
-                Iniciar sesión
-            </button>
-            <button className="login__button-secondary" to="/signup" onClick={onButtonClicked}>
-                Registrarse
-            </button>
-          </div>
         </React.Fragment>
       );
     }
@@ -46,7 +30,23 @@ function Login() {
   return (
       <div className="login--container">
           <div className="login__logo" />
-          {getSessionContent()}
+          INICIAR SESIÓN
+          <div className="login__input">
+            <label htmlFor="username">Username{' '}</label>
+            <input id="username" type="text" />
+          </div>
+          <div className="login__input">
+            <label htmlFor="password">Password{' '}</label>
+            <input id="password" type="password" />
+          </div>
+          <div className="login__input">
+            <button className="form__button--primary" to="/exercises" onClick={onButtonClicked}>
+                Ingresar
+            </button>
+            <button className="form__button--primary" to="/signup" onClick={onButtonClicked}>
+                Registrarse
+            </button>
+          </div>
           <button className="login__button-secondary" to="/about" onClick={onButtonClicked}>
             Orientación para maestros y padres
           </button>

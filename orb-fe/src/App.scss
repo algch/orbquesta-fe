@@ -59,7 +59,7 @@
     align-self: center;
   }
 
-  &__button-primary {
+  &__button--primary {
     background: linear-gradient(to right, #cf2e7e, #8d53ff, #ceb8ff);
     color: white;
     align-self: center;
@@ -71,8 +71,34 @@
     margin: 10px;
   }
 
-  &__button-secondary {
+  &__button--secondary {
     background: #d1baff;
+    color: black;
+    align-self: center;
+    width: 250px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+  }
+}
+
+.form {
+  &__button--primary {
+    background: #fd5852;
+    color: white;
+    align-self: center;
+    width: 300px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  &__button--secondary {
+    background: linear-gradient(to right, #cf2e7e, #8d53ff, #ceb8ff);
     color: black;
     align-self: center;
     width: 250px;

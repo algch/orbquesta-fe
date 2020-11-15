@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
-import axios from 'axios';
 
 import LessonVideo from 'components/LessonVideo';
 import NoteSelector from 'components/NoteSelector';
@@ -24,8 +23,6 @@ function RythmicDictation() {
     const fetchData = async () => {
       try {
         const userResponse = await OrbquestaClient.get('/users/1');
-        console.log("response ", user);
-        debugger;
         const lessonId = userResponse.data.next_lesson;
         const lessonResponse = await OrbquestaClient.get(`/lessons/${lessonId}`);
         setVideoUrl(lessonResponse.data.video_url);

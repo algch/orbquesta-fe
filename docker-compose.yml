@@ -1,9 +1,12 @@
-version: '3'
+version: "3"
 services:
   api:
+    stdin_open: true
+    tty: true
     build: .
     ports:
-      - "8000:8000"
+      - "5000:5000"
+    command: gunicorn -b :5000 orbquesta:app
   database:
     image: "postgres" # use latest official postgres version
     env_file:

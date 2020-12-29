@@ -10,46 +10,32 @@ function Login() {
     history.push(path);
   }
 
-  const getSessionContent = () => {
-    if (buttonclicked) {
-      return (
-        <React.Fragment>
-        </React.Fragment>
-      );
-    }
-
-    return (
-      <React.Fragment>
-        <button className="login__button-primary" onClick={() => setButtonClicked(true)}>
-          INICIAR SESIÓN O REGISTRARSE
-        </button>
-      </React.Fragment>
-    );
-  };
-
   return (
-      <div className="login--container">
-          <div className="login__logo" />
-          INICIAR SESIÓN
-          <div className="login__input">
-            <label htmlFor="username">Username{' '}</label>
-            <input id="username" type="text" />
+      <div className="login__container">
+        <div className="login__form-container">
+          <div className="login__form-element login__logo" />
+          <div className="login__form-element login__title">
+            INICIAR SESIÓN
           </div>
-          <div className="login__input">
-            <label htmlFor="password">Password{' '}</label>
-            <input id="password" type="password" />
+          <div className="login__form-element">
+            <input className="login__input" id="username" type="text" placeholder="Dirección de correo electrónico" />
           </div>
-          <div className="login__input">
+          <div className="login__form-element">
+            <input className="login__input" id="password" type="password" placeholder="Contraseña" />
+          </div>
+          <div className="login__form-element">
             <button className="form__button--primary" to="/exercises" onClick={onButtonClicked}>
                 Ingresar
             </button>
-            <button className="form__button--primary" to="/signup" onClick={onButtonClicked}>
-                Registrarse
-            </button>
           </div>
-          <button className="login__button-secondary" to="/about" onClick={onButtonClicked}>
-            Orientación para maestros y padres
-          </button>
+          <div className="login__form-element">
+            ¿Haz olvidado tu contraseña?
+          </div>
+        </div>
+        <div className="login__footer">
+          <div className="login__totem"></div>
+          <div></div>
+        </div>
       </ div>
   );
 
